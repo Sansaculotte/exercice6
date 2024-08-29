@@ -30,12 +30,25 @@ mkdir -p Films
 echo "Création du fichier 'collection.txt' dans le dossier 'Films'..."
 touch Films/collection.txt
 
-# 6. Demander à l'utilisateur le nom du film à ajouter
-echo "Veuillez entrer le nom du film à ajouter dans la collection :"
-read nom_film
+# Boucle pour ajouter des films tant que l'utilisateur le souhaite
+while true; do
+    # 6. Demander à l'utilisateur s'il veut ajouter un nouveau film
+    echo "Voulez-vous ajouter un nouveau film dans la liste ? (o/n)"
+    read ajouter_film
 
-# 7. Ajouter le nom du film dans le fichier collection.txt
-echo "$nom_film" >> Films/collection.txt
+    if [ "$ajouter_film" = "o" ]; then
+        # 7. Demander à l'utilisateur le nom du film à ajouter
+        echo "Veuillez entrer le nom du film à ajouter dans la collection :"
+        read nom_film
 
-# Confirmation de l'ajout
-echo "Le film '$nom_film' a été ajouté à la collection dans $emplacement/Films/collection.txt"
+        # 8. Ajouter le nom du film dans le fichier collection.txt
+        echo "$nom_film" >> Films/collection.txt
+
+        # Confirmation de l'ajout
+        echo "Le film '$nom_film' a été ajouté à la collection dans $emplacement/Films/collection.txt"
+    else
+        # Si l'utilisateur ne veut pas ajouter d'autres films, on sort de la boucle
+        echo "Fin de l'ajout des films."
+        break
+    fi
+done
